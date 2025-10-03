@@ -20,7 +20,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
-  project: default
+  project: platform
   source:
     repoURL: https://github.com/rkddmscks/k8s-resource.git
     targetRevision: main

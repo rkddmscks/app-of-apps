@@ -30,7 +30,7 @@ spec:
       annotations:
         argocd.argoproj.io/sync-wave: "1"
     spec:
-      project: default
+      project: deploy
       source:
         repoURL: https://github.com/rkddmscks/deploy.git
         targetRevision: main
