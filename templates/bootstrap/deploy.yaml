@@ -34,10 +34,10 @@ spec:
       source:
         repoURL: https://github.com/rkddmscks/deploy.git
         targetRevision: main
-        path: .
+        path: '{{path}}'
         helm:
           valueFiles:
-          - '{{path}}/values.yaml'
+          - values.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd
