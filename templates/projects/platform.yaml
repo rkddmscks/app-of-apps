@@ -17,23 +17,21 @@ kind: AppProject
 metadata:
   name: platform
   namespace: argocd
+  annotations:
+  argocd.argoproj.io/sync-wave: "-1"
 spec:
   description: Platform infrastructure project
-
   sourceRepos:
     - https://github.com/rkddmscks/k8s-resource.git
     - https://argoproj.github.io/argo-helm
     - https://kubernetes.github.io/ingress-nginx
     - https://charts.jetstack.io
-
   destinations:
     - namespace: '*'
       server: https://kubernetes.default.svc
-
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
-
   namespaceResourceWhitelist:
     - group: '*'
       kind: '*'
