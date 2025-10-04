@@ -16,8 +16,6 @@ kind: AppProject
 metadata:
   name: deploy
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
 spec:
   description: User applications deployment project
   sourceRepos:
