@@ -13,39 +13,25 @@
 # limitations under the License.
 
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
   name: deploy
   namespace: argocd
 spec:
-  generators:
-  - git:
-      repoURL: https://github.com/rkddmscks/deploy.git
-      revision: main
-      directories:
-      - path: 'apps/*'
-  template:
-    metadata:
-      name: '{{path.basename}}'
-      annotations:
-        argocd.argoproj.io/sync-wave: "2"
-    spec:
-      project: deploy
-      source:
-        repoURL: https://github.com/rkddmscks/deploy.git
-        targetRevision: main
-        path: '{{path}}'
-        helm:
-          valueFiles:
-          - values.yaml
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: argocd
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
-          - PruneLast=true
-          - ApplyOutOfSyncOnly=true
+  project: deploy
+  source:
+    repoURL: https://github.com/rkddmscks/deploy.git
+    targetRevision: main
+    path: .
+    directory:
+      recurse: false
+      include: applicationset.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

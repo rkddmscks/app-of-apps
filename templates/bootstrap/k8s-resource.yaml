@@ -25,9 +25,9 @@ spec:
     repoURL: https://github.com/rkddmscks/k8s-resource.git
     targetRevision: main
     path: .
-    helm:
-      valueFiles:
-        - values.yaml
+    directory:
+      recurse: false
+      include: applicationset.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
